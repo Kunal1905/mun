@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
+
+  --color-ink-950: #0b1320;
+  --color-ink-900: #0f1a2b;
+  --color-ink-800: #142033;
+  --color-ink-700: #1b2a41;
+  --color-ink-600: #2a3b57;
+  --color-ink-500: #475569;
+  --color-ink-400: #64748b;
+  --color-ink-300: #94a3b8;
+
+  --color-paper: #f7f5f0;
+  --color-paper-100: #efebe2;
+  --color-paper-200: #e4ddcf;
+  --color-paper-300: #d3c9b5;
+
+  --color-brass-700: #7a5a24;
+  --color-brass-600: #8e6a2c;
+  --color-brass: #b8893b;
+  --color-brass-400: #cfa45a;
+  --color-brass-200: #ecd9b0;
+  --color-brass-100: #f6ecd6;
+
+  --color-crimson: #b4473c;
+  --color-crimson-100: #f6e1de;
+  --color-sage: #3f7d5a;
+  --color-sage-100: #ddeee3;
+
+  --shadow-card: 0 1px 0 rgba(27, 42, 65, 0.04), 0 8px 24px -12px rgba(27, 42, 65, 0.18);
+  --shadow-lift: 0 2px 0 rgba(27, 42, 65, 0.05), 0 18px 40px -18px rgba(27, 42, 65, 0.35);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 1.8s ease-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 rgba(184, 137, 59, 0.55);
+    }
+    100% {
+      box-shadow: 0 0 0 14px rgba(184, 137, 59, 0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-paper font-sans text-ink-700;
+  }
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-serif);
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: var(--color-brass-200);
+    color: var(--color-ink-900);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 2px;
+  }
+}
+
+/* Subtle paper texture + parliamentary grid used on hero and room backdrops. */
+.bg-chamber {
+  background-color: var(--color-ink-800);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(184, 137, 59, 0.18), transparent 60%),
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size:
+    100% 100%,
+    22px 22px;
+}
+
+.bg-paper-grain {
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(184, 137, 59, 0.08), transparent 70%),
+    radial-gradient(circle at 1px 1px, rgba(27, 42, 65, 0.05) 1px, transparent 0);
+  background-size:
+    100% 100%,
+    18px 18px;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.4) transparent;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Clerk components inherit our palette */
+.cl-rootBox,
+.cl-card {
+  font-family: var(--font-sans);
+}

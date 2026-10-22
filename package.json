@@ -1,0 +1,27 @@
+{
+  "name": "mun-crisis",
+  "private": true,
+  "version": "1.0.0",
+  "description": "MUN Crisis - real-time multiplayer Model UN debate game",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c blue,yellow \"npm run dev -w @mun/server\" \"npm run dev -w @mun/web\"",
+    "build": "npm run build -w @mun/web",
+    "start": "npm run start -w @mun/server",
+    "db:up": "docker compose up -d db",
+    "db:push": "npm run db:push -w @mun/server",
+    "db:migrate": "npm run db:migrate -w @mun/server",
+    "db:seed": "npm run db:seed -w @mun/server",
+    "db:studio": "npm run db:studio -w @mun/server",
+    "setup": "npm run db:push && npm run db:seed",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6",
+    "typescript": "^5.9.3"
+  }
+}

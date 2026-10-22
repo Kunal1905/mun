@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mun
+      POSTGRES_PASSWORD: mun
+      POSTGRES_DB: mun_crisis
+    ports:
+      - "5433:5432"
+    volumes:
+      - mun_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mun -d mun_crisis"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  mun_pgdata:
